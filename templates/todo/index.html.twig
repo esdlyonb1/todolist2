@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TodoController!{% endblock %}
+
+{% block body %}
+
+    <h1>Les todos</h1>
+
+    {% for todo in todos %}
+        <hr>
+        <hr>
+
+        <p><strong>{{ todo.description }}</strong></p>
+
+        <p><strong>{{ todo.createdAt|date("d/m/Y - H:s") }}</strong></p>
+
+        <p>Catégorie : {{ todo.category.name }}</p>
+        
+
+        {% if todo.status == true %}
+            <a href="#" class="btn btn-success">Fait</a>
+
+        {% else %}
+          <a href="#" class="btn btn-secondary">Pas fait</a>
+        {% endif %}
+        <a href="{{ path("delete_todo", {id:todo.id}) }}" class="btn btn-danger">Delete</a>
+        <a href="{{ path("edit_todo", {id:todo.id}) }}" class="btn btn-warning">Edit</a>
+        <hr>
+        <hr>
+    {% endfor %}
+{% endblock %}
